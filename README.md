@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+  <a href="https://youtu.be/_v1mKM0OQr4" target="blank"><img src="https://res.cloudinary.com/https-mpcsj-com/image/upload/v1673800345/My%20Projects/Youtube/MpcsjTechTips/Thumbnail1_lda8ff.jpg" width="320" alt="Nest Logo" /></a>
 </p>
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
@@ -24,7 +24,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Rest API that integrates with [ChatGPT](http://chat.openai.com) and [OpenAI](http://openai.com) models using [NestJS](https://nestjs.com/)
 
 ## Installation
 
@@ -64,7 +64,9 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+- Mpcsj Computing - https://mpcsj.com
+- Author (Project) - [Mpcsj](https://github.com/Mpcsj)
+- Author(Framework) - [Kamil Myśliwiec](https://kamilmysliwiec.com)
 - Website - [https://nestjs.com](https://nestjs.com/)
 - Twitter - [@nestframework](https://twitter.com/nestframework)
 
