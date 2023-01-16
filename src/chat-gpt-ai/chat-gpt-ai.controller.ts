@@ -14,8 +14,13 @@ export class ChatGptAiController {
     }
 
     @Get("/model")
-    listModels(){
-        return this.service.listModels()
+    async listModels(){
+        const result = await this.service.listModels()
+
+        return {
+            version:2,
+            result
+        }
     }
 
 }
