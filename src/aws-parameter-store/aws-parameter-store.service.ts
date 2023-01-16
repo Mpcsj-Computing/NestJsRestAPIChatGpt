@@ -2,12 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { isProduction } from 'src/app.utils';
 import * as AWS from "aws-sdk"
 
-
-/**
- *  accessKeyId:"AKIAQP7CVG6AC5XRNICG",
- *  secretAccessKey:"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"
-*/
-
 @Injectable()
 export class AwsParameterStoreService {
     private readonly ssmClient:AWS.SSM
