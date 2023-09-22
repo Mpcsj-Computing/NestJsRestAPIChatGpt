@@ -1,38 +1,29 @@
 import { Injectable } from '@nestjs/common';
-import { ChatHistoryManager } from './model/chat-history-manager';
-import { ChatOpenAI } from 'langchain/chat_models/openai';
-import {
-  GetChatCompletionAnswerInputDTO,
-  GetChatCompletionAnswerOutputDTO,
-} from './model/chat-completion-answer.dto';
-
-const DEFAULT_TEMPERATURE = 1;
-const DEFAULT_MODEL = 'gpt-3.5-turbo';
+import { CreateDreamChatDto } from './dto/create-dream-chat.dto';
+import { ChatGPTService } from './chat-gpt.service';
+import { GetChatCompilationAnswerDto } from './dto/get-compilation-answer.dto';
 
 @Injectable()
 export class ChatCompletionApiService {
-  private readonly chatHistory: ChatHistoryManager;
-  private readonly chat: ChatOpenAI;
+  private chatHistory: string[];
 
-  constructor() {
-    this.chatHistory = new ChatHistoryManager();
-    this.chat = new ChatOpenAI({
-      temperature: DEFAULT_TEMPERATURE,
-      openAIApiKey: process.env.OPENAI_API_KEY,
-      modelName: DEFAULT_MODEL,
-    });
+  constructor(private readonly chatGptAiService: ChatGPTService) {
+    this.initChat('you are a helpful assistant'); //any initial message developer wants.
   }
 
-  async getAiModelAnswer(data: GetChatCompletionAnswerInputDTO) {
-    this.chatHistory.addHumanMessage(data.message);
-    const result = await this.chat.predictMessages(
-      this.chatHistory.chatHistory,
+  private initChat(systemMessage: string) {
+    this.chatHistory = [systemMessage]; // Initialize with system message
+  }
+
+  async getAiModelAnswer(data: CreateDreamChatDto) {
+    this.chatHistory.push(data.message); // Add human message to chat history
+
+    const aiMessage = await this.chatGptAiService.predictMessages(
+      this.chatHistory,
     );
 
-    const aiMessage = result.content;
+    this.chatHistory.push(aiMessage);
 
-    this.chatHistory.addAiMessage(aiMessage);
-
-    return GetChatCompletionAnswerOutputDTO.getInstance(aiMessage);
+    return GetChatCompilationAnswerDto.getInstance(aiMessage);
   }
 }
